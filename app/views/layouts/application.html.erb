@@ -9,12 +9,11 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column">
-    <%= render 'layouts/navigation' %>
-    <div id="page-content">
-      <%= render 'layouts/messages' %>
-      <%= yield %>
-    </div>
-    <%= render 'layouts/footer' %>
+  <body
+  <%# flash k/v is coming from articles controller, action/method create %>
+    <% flash.each do |name, msg| %>
+      <%= msg %>
+    <% end %>
+    <%= yield %>
   </body>
 </html>

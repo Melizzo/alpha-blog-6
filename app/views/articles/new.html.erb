@@ -1,0 +1,31 @@
+<h1>Create a brand spanking article!</h1>
+<br/>
+<%# @article variable is coming from articles_controller, action/method create %>
+<% if @article.errors.any? %>
+  <h2>Whoops!</h2>
+  <ul>
+    <% @article.errors.full_messages.each do |error| %>
+    <li> <%= error %> </li>
+    <% end%>
+  </ul>
+<% end %>
+
+<%# scope means = which model are we working with %>
+<%# we want article model and we submit to the url of path of articles
+local: true is for http requests(only with form_with) %>
+<%= form_with scope: :article, url: articles_path, local: true do |f| %>
+  <p>
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </p>  
+
+  <p>
+    <%= f.label :description %><br/>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
